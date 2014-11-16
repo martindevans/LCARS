@@ -1,0 +1,50 @@
+body {
+    margin: 0;
+}
+
+.lcars-container {
+    width: 100%;
+    height: 100%;
+    padding: 1%;
+}
+
+@elbow-width: 25px;
+
+.lcars-top-left-elbow {
+    border-top-left-radius: 75px;
+    width: 100%;
+    height: 100px;
+    background-color: cornflowerblue;
+
+    position: relative;
+}
+
+.lcars-top-left-elbow::after {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+
+    width: @elbow-width;
+    height: 65%;
+
+    border-top-left-radius: 25;
+
+    content: "";
+
+    background-color: black;
+}
+
+.lcars-column-1-8 {
+    width: 12.5%
+}
+
+.lcars-button {
+    width: 100% - @elbow-width;
+
+    margin-top: 5px;
+    margin-bottom: 5px;
+
+    padding: 2px;
+
+    background-color: cornflowerblue;
+}
