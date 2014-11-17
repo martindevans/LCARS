@@ -43,6 +43,17 @@ gulp.task('js', function() {
 
 });
 
+
+gulp.task('html', function() {
+
+  return gulp.src([
+    '*.html'
+    ])
+    .pipe(plumber())
+    .pipe(reload({stream:true}));
+
+});
+
 gulp.task('clean', function(cb) {
 
   del(['build/css', 'build/js'], cb)
@@ -65,6 +76,7 @@ gulp.task('watch', function() {
 
   gulp.watch('src/less/*.less', ['less']);
   gulp.watch('src/js/*.js', ['js']);
+  gulp.watch('*.html', ['html']);
 
 });
 
