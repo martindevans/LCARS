@@ -21,7 +21,7 @@ This will pull all the other programs needed from a package repository.
 Once that is done all you have to do is run
 
 ``` bash
-gulp
+npm run gulp
 ```
 
 This will build all the less and javascript, watch the files for changes, rebuild on change then serve it to the browser
