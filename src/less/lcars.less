@@ -60,7 +60,7 @@ body {
     position: relative;
 }
 
-.lcars-left .lcars-button::after {
+.lcars-button-after {
     position: absolute;
 
     width: @elbow-width;
@@ -71,25 +71,36 @@ body {
     background-color: inherit;
 
     top: 0;
-    right: -(@elbow-width * 1.15);
-
-    border-top-right-radius: 150% 100%;
-    border-bottom-right-radius: 150% 100%;
 }
 
-.lcars-right .lcars-button::after {
-    position: absolute;
+@button-cap-radius: 150% 100%;
 
-    width: @elbow-width;
-    height: 100%;
+.lcars-left .lcars-cap-round.lcars-button::after {
+    .lcars-button-after;
 
-    content: "";
+    right: -(@elbow-width * 1.15);
 
-    background-color: inherit;
+    border-top-right-radius: @button-cap-radius;
+    border-bottom-right-radius: @button-cap-radius;
+}
 
-    top: 0;
+.lcars-right .lcars-cap-round.lcars-button::after {
+    .lcars-button-after;
+
     left: -(@elbow-width * 1.15);
 
-    border-top-left-radius: 150% 100%;
-    border-bottom-left-radius: 150% 100%;
+    border-top-left-radius: @button-cap-radius;
+    border-bottom-left-radius: @button-cap-radius;
+}
+
+.lcars-left .lcars-cap-square.lcars-button::after {
+    .lcars-button-after;
+
+    right: -(@elbow-width * 1.15);
+}
+
+.lcars-right .lcars-cap-square.lcars-button::after {
+    .lcars-button-after;
+
+    left: -(@elbow-width * 1.15);
 }
