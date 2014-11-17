@@ -22,8 +22,8 @@ gulp.task('less', function() {
     .pipe(sourcemaps.write())
     .pipe(autoprefixer('last 3 version'))
     .pipe(gulp.dest('build/css/'))
-    .pipe(minifycss())
-    .pipe(gulp.dest('build/css/'))
+    //.pipe(minifycss())
+    //.pipe(gulp.dest('build/css/'))
     .pipe(reload({stream:true}));
 
 });
