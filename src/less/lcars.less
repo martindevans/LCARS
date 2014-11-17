@@ -56,10 +56,40 @@ body {
     margin-bottom: 5px;
 
     background-color: cornflowerblue;
+
+    position: relative;
 }
 
-.lcars-button::after {
+.lcars-left .lcars-button::after {
+    position: absolute;
+
     width: @elbow-width;
     height: 100%;
-    background: black;
+
+    content: "";
+
+    background-color: inherit;
+
+    top: 0;
+    right: -(@elbow-width * 1.15);
+
+    border-top-right-radius: 150% 100%;
+    border-bottom-right-radius: 150% 100%;
+}
+
+.lcars-right .lcars-button::after {
+    position: absolute;
+
+    width: @elbow-width;
+    height: 100%;
+
+    content: "";
+
+    background-color: inherit;
+
+    top: 0;
+    left: -(@elbow-width * 1.15);
+
+    border-top-left-radius: 150% 100%;
+    border-bottom-left-radius: 150% 100%;
 }
