@@ -1,33 +1,30 @@
 @import "lcars-variables.less";
 
-.lcars-elbow {
+.lcars-elbow() {
     width: 100%;
     height: @border-height;
     background-color: cornflowerblue;
 
     position: relative;
 
+    clear: both;
+
     &::after {
-        .lcars-elbow-after;
+        position: absolute;
+
+        width: @elbow-width;
+        height: 65%;
+
+        content: "";
+
+        background-color: @background;
     }
-}
-
-.lcars-elbow-after {
-    position: absolute;
-
-    width: @elbow-width;
-    height: 65%;
-
-    content: "";
-
-    background-color: @background;
 }
 
 .lcars-left > .lcars-top-elbow {
     border-top-left-radius: @elbow-outer-radius;
 
     float: left;
-    clear: both;
 
     &::after {
         bottom: 0;
@@ -36,14 +33,13 @@
         border-top-left-radius: @elbow-inner-radius;
     }
 
-    .lcars-elbow;
+    .lcars-elbow();
 }
 
 .lcars-left > .lcars-bottom-elbow {
     border-bottom-left-radius: @elbow-outer-radius;
 
     float: left;
-    clear: both;
 
     &::after {
         top: 0;
@@ -52,14 +48,13 @@
         border-bottom-left-radius: @elbow-inner-radius;
     }
 
-    .lcars-elbow;
+    .lcars-elbow();
 }
 
 .lcars-right > .lcars-top-elbow {
     border-top-right-radius: @elbow-outer-radius;
 
     float: right;
-    clear: both;
 
     &::after {
         bottom: 0;
@@ -68,14 +63,13 @@
         border-top-right-radius: @elbow-inner-radius;
     }
 
-    .lcars-elbow;
+    .lcars-elbow();
 }
 
 .lcars-right > .lcars-bottom-elbow {
     border-bottom-right-radius: @elbow-outer-radius;
 
     float: right;
-    clear: both;
 
     &::after {
         top: 0;
@@ -84,7 +78,7 @@
         border-bottom-right-radius: @elbow-inner-radius;
     }
 
-    .lcars-elbow;
+    .lcars-elbow();
 }
 
 .lcars-spacer-elbow {
