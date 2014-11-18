@@ -13,10 +13,15 @@ var gulp = require('gulp'),
   browserSync = require('browser-sync'),
   reload = browserSync.reload;
 
+function handleError(err) {
+  console.log(err.toString());
+  this.emit('end');
+}
+
 gulp.task('less', function() {
 
   return gulp.src('src/less/lcars.less')
-    .pipe(plumber())
+    .pipe(plumber({ errorHandler: handleError }))
     .pipe(sourcemaps.init())
     .pipe(less({ style: 'expanded' }))
     .pipe(sourcemaps.write())
