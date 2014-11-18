@@ -1,16 +1,9 @@
 @import "lcars-variables.less";
+@import "lcars-generate.less";
 
-//Generate N rows, by (recursively) iterating from 1 to N
-//Rows are named something like ".lcars-row-7-12" for row 7/12*100%
-.generate-lcars-rows(@n, @i: 1) when (@i =< @n) {
-    .lcars-row-@{i}-@{n} {
-        width: 100%;
-        height: (@i * 100% / @n);
+.generate(row, 12, {
+    width: 100%;
+    height: (@i * 100% / @n);
 
-        overflow: hidden;
-    }
-
-    .generate-lcars-rows(@n, (@i + 1));
-}
-
-.generate-lcars-rows(12);
+    overflow: hidden;
+});
