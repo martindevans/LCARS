@@ -1,8 +1,10 @@
 @import "lcars-variables.less";
 
 @import "lcars-elbows.less";
+
 @import "lcars-rows.less";
 @import "lcars-columns.less";
+
 @import "lcars-buttons.less";
 
 @font-face {
@@ -23,30 +25,4 @@ body {
 .lcars-container {
     width: 100%;
     height: 100%;
-}
-
-.lcars-column-1-8 {
-    width: 12.5%;
-
-    float: left;
-
-    height: 100%;
-}
-
-.lcars-column-inner {
-    width: 100% - @elbow-width;
-
-    float: left;
-    clear: both;
-
-    position: relative;
-}
-
-.lcars-right > .lcars-column-inner {
-    float: right;
-    clear: both;
-}
-
-.lcars-center {
-    float: left;
 }
