@@ -28,6 +28,11 @@ gulp.task('less', function() {
 
 });
 
+gulp.task('copyfonts', function() {
+   gulp.src('src/fonts/*')
+   .pipe(gulp.dest('build/fonts'));
+});
+
 gulp.task('js', function() {
 
   return gulp.src([
@@ -76,12 +81,13 @@ gulp.task('watch', function() {
 
   gulp.watch('src/less/*.less', ['less']);
   gulp.watch('src/js/*.js', ['js']);
+  gulp.watch('src/fonts/*', ['copyfonts']);
   gulp.watch('*.html', ['html']);
 
 });
 
 gulp.task('default', ['clean','browser-sync','watch'], function() {
 
-  gulp.start('less', 'js');
+  gulp.start('less', 'js', 'copyfonts');
 
 });
