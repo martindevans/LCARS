@@ -17,7 +17,7 @@
 .lcars-button-after() {
     position: absolute;
 
-    width: @elbow-width;
+    width: @elbow-cutout-width;
     height: 100%;
 
     content: "";
@@ -32,7 +32,7 @@
 .lcars-left .lcars-cap-round.lcars-button::after {
     .lcars-button-after();
 
-    right: -(@elbow-width * 1.15);
+    right: -(@elbow-cutout-width * 1.15);
 
     border-top-right-radius: @button-cap-radius;
     border-bottom-right-radius: @button-cap-radius;
@@ -41,7 +41,7 @@
 .lcars-right .lcars-cap-round.lcars-button::after {
     .lcars-button-after();
 
-    left: -(@elbow-width * 1.15);
+    left: -(@elbow-cutout-width * 1.15);
 
     border-top-left-radius: @button-cap-radius;
     border-bottom-left-radius: @button-cap-radius;
@@ -50,11 +50,11 @@
 .lcars-left .lcars-cap-square.lcars-button::after {
     .lcars-button-after();
 
-    right: -(@elbow-width * 1.15);
+    right: -(@elbow-cutout-width * 1.15);
 }
 
 .lcars-right .lcars-cap-square.lcars-button::after {
     .lcars-button-after();
 
-    left: -(@elbow-width * 1.15);
+    left: -(@elbow-cutout-width * 1.15);
 }

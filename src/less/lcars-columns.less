@@ -10,17 +10,29 @@
 });
 
 .lcars-column-inner {
-    width: 100% - @elbow-width;
+    width: 100% - @elbow-cutout-width;
 
     float: left;
     clear: both;
 
     position: relative;
-}
 
-.lcars-right > .lcars-column-inner {
-    float: right;
-    clear: both;
+    overflow: hidden;
+
+    height: calc(~"100% - " unit(@elbow-height * 2, px));
+    min-height: 0;
+
+    .lcars-left > & {
+    }
+
+    .lcars-center > & {
+        height: calc(~"100% - " unit(@center-elbow-height * 2, px));
+        min-height: @elbow-height * 2 - @center-elbow-height * 2;
+    }
+
+    .lcars-right > & {
+        float: right;
+    }
 }
 
 .lcars-center {
