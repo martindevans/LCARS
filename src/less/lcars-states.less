@@ -1,0 +1,30 @@
+@-webkit-keyframes BUTTON-SELECT {
+  0% {
+    -webkit-filter: saturate(100%);
+  }
+  100% {
+    -webkit-filter: saturate(@saturation);
+  }
+}
+
+@-webkit-keyframes BUTTON-DESELECT {
+  0% {
+    -webkit-filter: saturate(@saturation);
+  }
+  100% {
+    -webkit-filter: saturate(100%);
+  }
+}
+
+.lcars-button {
+  -webkit-animation-name: BUTTON-DESELECT;
+  -webkit-animation-duration: @button-out-duation;
+  animation-timing-function: ease-in;
+}
+
+.lcars-button:active {
+  -webkit-animation-name: BUTTON-SELECT;
+  -webkit-animation-duration: @button-in-duation;
+  -webkit-filter: brightness(@brightness);
+  animation-timing-function: ease-in-out;
+}
