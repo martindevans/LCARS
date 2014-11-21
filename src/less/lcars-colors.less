@@ -1,40 +1,22 @@
-//// Red alert colours
-//
-//.danger-1 {
-//    background-color: #f5173c !important;
-//}
-//
-//.danger-2 {
-//    background-color: #a30e24 !important;
-//}
-//
-//.danger-3 {
-//    background-color: #bf2042 !important;
-//}
-//
-//.danger-4 {
-//    background-color: #330512 !important;
-//}
-//
-//.danger-5 {
-//    background-color: #d9d5b8 !important;
-//}
-//
-//.danger-6 {
-//    background-color: #f1dfbf !important;
-//}
-//
-//.danger-7 {
-//    background-color: #4c4d47 !important;
-//}
-//
-//.danger-8 {
-//    background-color: #9e9993 !important;
-//}
+@import "lcars-variables.less";
 
-.body {
-    background-color: #00000a;
-}
+@import "lcars-loop.less";
+
+.loop2(50, 50, {
+        .lcars-group-@{i} {
+            //No rules for generic groups
+        }
+    },
+    {
+        .lcars-group-@{i} > *:nth-child(@{j}) {
+            background-color: hsl(
+                `((@{i} * 1415951.9000509) % 1) * 360`,
+                `((@{j} * 1245191.5780507) % 1) * (@{group-max-saturation} - @{group-min-saturation}) + @{group-min-saturation}`,
+                `((@{j} * 9247681.3263443) % 1) * (@{group-max-luminance} - @{group-min-luminance}) + @{group-min-luminance}`
+            );
+        }
+    }
+);
 
 //  Normal
 .normal {
