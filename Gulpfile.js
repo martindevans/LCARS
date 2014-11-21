@@ -21,6 +21,9 @@ function printError(err) {
 }
 
 var locations = {
+    lesswatch: [
+        'src/less/*.less'
+    ],
     less: [
         'src/less/lcars.less'
     ],
@@ -108,7 +111,7 @@ gulp.task('browser-sync', function() {
 
 gulp.task('watch', function() {
 
-    gulp.watch(locations.less, ['less']);
+    gulp.watch(locations.lesswatch, ['less']);
     gulp.watch(locations.typescript, ['ts']);
     gulp.watch(locations.javascript, ['js']);
     gulp.watch(locations.fonts, ['copyfonts']);
