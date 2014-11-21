@@ -23,14 +23,18 @@
     min-height: 0;
 
     .lcars-left > & {
+        padding-right: @elbow-cutout-width;
     }
 
     .lcars-center > & {
         height: calc(~"100% - " unit(@center-elbow-height * 2, px));
         min-height: @elbow-height * 2 - @center-elbow-height * 2;
+
+        width: 100%;
     }
 
     .lcars-right > & {
+        padding-left: @elbow-cutout-width;
         float: right;
     }
 }
