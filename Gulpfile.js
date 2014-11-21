@@ -10,18 +10,39 @@ var gulp = require('gulp'),
   stripDebug = require('gulp-strip-debug'),
   uglify = require('gulp-uglify'),
   watch = require('gulp-watch'),
+  ts = require('gulp-typescript'),
   browserSync = require('browser-sync'),
+  eventStream = require('event-stream'),
   reload = browserSync.reload;
 
-function handleError(err) {
+function printError(err) {
   console.log(err.toString());
   this.emit('end');
 }
 
+var locations = {
+    less: [
+        'src/less/lcars.less'
+    ],
+    fonts: [
+        'src/fonts/**'
+    ],
+    typescript: [
+        'src/ts/**/*.ts',
+        'typings/**/*.ts'
+    ],
+    javascript: [
+        'src/js/**/*.js'
+    ],
+    html: [
+        '*.html'
+    ]
+};
+
 gulp.task('less', function() {
 
-  return gulp.src('src/less/lcars.less')
-    .pipe(plumber({ errorHandler: handleError }))
+  return gulp.src(locations.less)
+    .pipe(plumber({ errorHandler: printError }))
     .pipe(sourcemaps.init())
     .pipe(less({ style: 'expanded' }))
     .pipe(sourcemaps.write())
@@ -34,31 +55,36 @@ gulp.task('less', function() {
 });
 
 gulp.task('copyfonts', function() {
-   gulp.src('src/fonts/*')
+   gulp.src(locations.fonts)
    .pipe(gulp.dest('build/fonts'));
+});
+
+gulp.task('ts', function() {
+  var tsResult = gulp.src(locations.typescript)
+    .pipe(ts({
+        declarationFiles: true,
+        noExternalResolve: false,
+        removeComments: false,
+        module: "amd"
+    }));
+    
+    return eventStream.merge(
+        tsResult.dts.pipe(gulp.dest('build/definitions')),
+        tsResult.js.pipe(gulp.dest('build/js'))
+    );
 });
 
 gulp.task('js', function() {
 
-  return gulp.src([
-    'src/js/*.js'
-    ])
-    .pipe(plumber())
-    .pipe(concat('production.js'))
-    .pipe(rename({suffix: '.min'}))
-    //.pipe(stripDebug())
-    .pipe(uglify())
-    .pipe(gulp.dest('build/js'))
-    .pipe(reload({stream:true}));
-
+    gulp.src(locations.javascript)
+        .pipe(gulp.dest('build/js'));
+    
 });
 
 
 gulp.task('html', function() {
 
-  return gulp.src([
-    '*.html'
-    ])
+  return gulp.src(locations.html)
     .pipe(plumber())
     .pipe(reload({stream:true}));
 
@@ -72,27 +98,26 @@ gulp.task('clean', function(cb) {
 
 gulp.task('browser-sync', function() {
 
-  browserSync({
-
-	server: {
+    browserSync({
+        server: {
             baseDir: "./"
         }
-
-  });
+    });
 
 });
 
 gulp.task('watch', function() {
 
-  gulp.watch('src/less/*.less', ['less']);
-  gulp.watch('src/js/*.js', ['js']);
-  gulp.watch('src/fonts/*', ['copyfonts']);
-  gulp.watch('*.html', ['html']);
+    gulp.watch(locations.less, ['less']);
+    gulp.watch(locations.typescript, ['ts']);
+    gulp.watch(locations.javascript, ['js']);
+    gulp.watch(locations.fonts, ['copyfonts']);
+    gulp.watch(locations.html, ['html']);
 
 });
 
 gulp.task('default', ['clean','browser-sync','watch'], function() {
 
-  gulp.start('less', 'js', 'copyfonts');
+    gulp.start('less', 'ts', 'js', 'copyfonts');
 
 });

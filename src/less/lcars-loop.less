@@ -1,0 +1,36 @@
+// Loop from 1 to N
+.loop(@n, @body, @i: 1) when (@i =< @n) {
+    @body();
+
+    .loop(@n, @body, (@i + 1));
+}
+
+.loop2(@n, @m, @outerBody, @innerBody) {
+    .loopi (@i) when (@i > 0) {
+        .loopj (@j) when (@j > 0) {
+
+            @innerBody();
+
+            .loopj(@j - 1);
+        }
+
+        @outerBody();
+
+        .loopj(@m);
+        .loopi(@i - 1);
+    }
+
+    .loopi(@n);
+}
+
+// Generate N things by iterating from 1 to N
+// things are named something like ".lcars-something-7-12"
+// Access current iteration with @i
+// Access total iterations with @n
+.generate-name-i-n(@name, @n, @rules) {
+    .loop(@n, {
+        .lcars-@{name}-@{i}-@{n} {
+            @rules();
+        }
+    });
+}

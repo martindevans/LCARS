@@ -1,9 +1,0 @@
-//Generate N thing by (recursively) iterating from 1 to N
-//things are named something like ".lcars-something-7-12" for row 7/12*100%
-.generate(@name, @n, @rules, @i: 1) when (@i =< @n) {
-    .lcars-@{name}-@{i}-@{n} {
-        @rules();
-    }
-
-    .generate(@name, @n, @rules, (@i + 1));
-}
