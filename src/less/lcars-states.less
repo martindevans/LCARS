@@ -1,30 +1,35 @@
-@-webkit-keyframes BUTTON-SELECT {
+@remapped-highlight-brightness: unit(((@highlight-brightness / 100) / @group-max-luminance) * 100, %);
+@remapped-highlight-saturation: unit(((@highlight-saturation / 100) / @group-max-saturation) * 100, %);
+
+@-webkit-keyframes Highlight-In {
   0% {
-    -webkit-filter: saturate(100%);
+    filter: saturate(100%);
   }
   100% {
-    -webkit-filter: saturate(@saturation);
+    filter: saturate(@remapped-highlight-saturation);
   }
 }
 
-@-webkit-keyframes BUTTON-DESELECT {
+@-webkit-keyframes Highlight-Out {
   0% {
-    -webkit-filter: saturate(@saturation);
+    filter: saturate(@remapped-highlight-saturation);
   }
   100% {
-    -webkit-filter: saturate(100%);
+    filter: saturate(100%);
   }
 }
 
 .lcars-button {
-  -webkit-animation-name: BUTTON-DESELECT;
-  -webkit-animation-duration: @button-out-duation;
-  animation-timing-function: ease-in;
+  animation-name: Highlight-Out;
+  animation-duration: @highlight-out-duration;
+  animation-timing-function: ease-out;
 }
 
 .lcars-button:active {
-  -webkit-animation-name: BUTTON-SELECT;
-  -webkit-animation-duration: @button-in-duation;
-  -webkit-filter: brightness(@brightness);
-  animation-timing-function: ease-in-out;
+  animation-name: Highlight-In;
+  animation-duration: @highlight-in-duration;
+  animation-timing-function: ease-in;
+
+  filter: saturate(@remapped-highlight-saturation);
+  filter: brightness(@remapped-highlight-brightness);
 }
