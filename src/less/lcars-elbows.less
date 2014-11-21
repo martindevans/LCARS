@@ -2,18 +2,20 @@
 
 .lcars-elbow() {
     width: 100%;
-    height: @border-height;
+    height: @elbow-height;
     background-color: cornflowerblue;
 
     position: relative;
 
     clear: both;
+}
 
+.lcars-elbow-after() {
     &::after {
         position: absolute;
 
-        width: @elbow-width;
-        height: 65%;
+        width: @elbow-cutout-width;
+        height: @elbow-cutout-height;
 
         content: "";
 
@@ -34,6 +36,7 @@
     }
 
     .lcars-elbow();
+    .lcars-elbow-after()
 }
 
 .lcars-left > .lcars-bottom-elbow {
@@ -49,6 +52,25 @@
     }
 
     .lcars-elbow();
+    .lcars-elbow-after()
+}
+
+@center-elbow-height: @elbow-height * (1 - unit(@elbow-cutout-height) / 100);
+
+.lcars-center > .lcars-top-elbow {
+    float: left;
+
+    .lcars-elbow();
+
+    height: @center-elbow-height;
+}
+
+.lcars-center > .lcars-bottom-elbow {
+    float: left;
+
+    .lcars-elbow();
+
+    height: @center-elbow-height;
 }
 
 .lcars-right > .lcars-top-elbow {
@@ -64,6 +86,7 @@
     }
 
     .lcars-elbow();
+    .lcars-elbow-after()
 }
 
 .lcars-right > .lcars-bottom-elbow {
@@ -79,6 +102,7 @@
     }
 
     .lcars-elbow();
+    .lcars-elbow-after()
 }
 
 .lcars-spacer-elbow {
