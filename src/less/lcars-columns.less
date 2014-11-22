@@ -9,35 +9,42 @@
     overflow: hidden;
 });
 
-.lcars-column-inner {
-    width: 100% - @elbow-cutout-width;
+.lcars-column-inner(@shoulderCount) {
+    .lcars-column-inner-@{shoulderCount} {
+        width: 100% - @elbow-cutout-width;
 
-    float: left;
-    clear: both;
+        float: left;
+        clear: both;
 
-    position: relative;
+        position: relative;
 
-    overflow: hidden;
+        overflow: hidden;
 
-    height: calc(~"100% - " unit(@elbow-height * 2, px));
-    min-height: 0;
+        //HACK: When pixel height == 100% of parent height, things break. Since window cannot ever be ~.1 units high, this fixes that!
+        height: calc(~"100% - " unit(@elbow-height * @shoulderCount + 0.1, px));
+        min-height: 0;
 
-    .lcars-left > & {
-        padding-right: @elbow-cutout-width;
-    }
+        .lcars-left > & {
+            padding-right: @elbow-cutout-width;
+        }
 
-    .lcars-center > & {
-        height: calc(~"100% - " unit(@center-elbow-height * 2, px));
-        min-height: @elbow-height * 2 - @center-elbow-height * 2;
+        .lcars-center > & {
+            height: calc(~"100% - " unit(@center-elbow-height * @shoulderCount, px));
+            min-height: @elbow-height * @shoulderCount - @center-elbow-height * @shoulderCount;
 
-        width: 100%;
-    }
+            width: 100%;
+        }
 
-    .lcars-right > & {
-        padding-left: @elbow-cutout-width;
-        float: right;
+        .lcars-right > & {
+            padding-left: @elbow-cutout-width;
+            float: right;
+        }
     }
 }
+
+.lcars-column-inner(0);
+.lcars-column-inner(1);
+.lcars-column-inner(2);
 
 .lcars-center {
     float: left;

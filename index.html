@@ -1,33 +1,51 @@
 <html>
     <head>
     <link href="build/css/lcars.css" rel="stylesheet">
-    <script src="build/js/production.js"></script>
     </head>
     <body>
         <div class="lcars-container red-alert">
             <div class="lcars-row-10-12">
                 <div class="lcars-column-3-24 lcars-left">
-                    <div class="lcars-top-elbow shoulder"></div>
-                    <div class="lcars-column-inner lcars-group-1">
-                        <div class="lcars-button lcars-cap-round">Operations</div>
-                        <div class="lcars-button lcars-cap-round">Navigation</div>
-                        <div class="lcars-button lcars-cap-round">Tactical</div>
-                        <div class="lcars-button lcars-cap-square">Engineering</div>
-                        <div class="lcars-button lcars-cap-square">Medical</div>
-                        <div class="lcars-button lcars-cap-square">Communications</div>
-                    </div>
-                    <div class="lcars-bottom-elbow shoulder"></div>
+
+                    <div class="lcars-top-elbow"></div>
+
+                    <ul class="lcars-column-inner-2">
+                        <ul class="lcars-group-1">
+                            <li class="lcars-button lcars-cap-round">
+                                <p>Navigation</p>
+                                <ul class="lcars-group-2">
+                                    <li class="lcars-button lcars-cap-round">
+                                        <p>Sub group</p>
+                                        <ul class="lcars-group-3">
+                                            <li class="lcars-button lcars-cap-square">
+                                                <p>Sub Sub group</p>
+                                                <ul class="lcars-group-4">
+                                                    <li class="lcars-button lcars-cap-round">Option 1</li>
+                                                    <li class="lcars-button lcars-cap-round">Option 2</li>
+                                                    <li class="lcars-button lcars-cap-round">Option 3</li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <!-- <li class="lcars-button lcars-cap-round">Operations</li>
+                            <li class="lcars-button lcars-cap-round">Engineering</li> -->
+                        </ul>
+                    </ul>
+
+                    <div class="lcars-bottom-elbow"></div>
                 </div>
                 <div class="lcars-column-18-24 lcars-center">
                     <div class="lcars-top-elbow shoulder"></div>
-                    <div class="lcars-column-inner">
-                        The LCARS Computer Network
+                    <div class="lcars-column-inner-2">
+                        <p>The LCARS Computer Network</p>
                     </div>
                     <div class="lcars-bottom-elbow shouler"></div>
                 </div>
                 <div class="lcars-column-3-24 lcars-right">
                     <div class="lcars-top-elbow shoulder"></div>
-                    <div class="lcars-column-inner lcars-group-3">
+                    <div class="lcars-column-inner-2 lcars-group-3">
                         <div class="lcars-button lcars-cap-round">Configure</div>
                         <div class="lcars-button lcars-cap-round">Log out</div>
                         <div class="lcars-button lcars-cap-square offline">Deactivate</div>

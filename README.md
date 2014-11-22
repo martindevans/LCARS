@@ -25,3 +25,13 @@ npm run gulp
 ```
 
 This will build all the less and javascript, watch the files for changes, rebuild on change then serve it to the browser
+
+### Dependencies
+
+#### Zepto.js
+
+We are bundling a build of [Zepto.js](https://github.com/madrobby/zepto) which is a compatible subset of jQuery functionality. If you want to use jQuery instead, it should just work<sup>tm</sup>.
+ 
+ ### License
+ 
+ MIT Licensed... but if you build a functioning starship using this system, please consider giving us a ride!
