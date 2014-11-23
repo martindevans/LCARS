@@ -38,7 +38,7 @@ var locations = {
         'src/js/**/*.js'
     ],
     html: [
-        '*.html'
+        '**/*.html'
     ]
 };
 
@@ -62,14 +62,17 @@ gulp.task('copyfonts', function() {
    .pipe(gulp.dest('build/fonts'));
 });
 
+var tsProject = ts.createProject({
+    declarationFiles: true,
+    noExternalResolve: false,
+    removeComments: false,
+    module: "amd",
+    sortOutput: true
+});
+
 gulp.task('ts', function() {
-  var tsResult = gulp.src(locations.typescript)
-    .pipe(ts({
-        declarationFiles: true,
-        noExternalResolve: false,
-        removeComments: false,
-        module: "amd"
-    }));
+    var tsResult = gulp.src(locations.typescript)
+        .pipe(ts(tsProject));
     
     return eventStream.merge(
         tsResult.dts.pipe(gulp.dest('build/definitions')),
