@@ -15,6 +15,12 @@ See demos of the system at [martindevans.github.io/LCARS](martindevans.github.io
 
 ## Principles
 
+### Interactivity
+
+Items in LCARS can either be interactive or not, for example buttons (interactive) vs labels (non interactive). Interactive items are indicated with rounded edges, whilst non interactive items are indicated with square edges:
+
+![foo](Reference Images/Buttons/buttons vs labels.png)
+
 ## Frames
 
 ### Elbows
