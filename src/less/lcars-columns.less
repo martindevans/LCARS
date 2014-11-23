@@ -2,7 +2,10 @@
 
 .generate-name-i-n(column, 24, {
     height: 100%;
-    width: (@i * 100% / @n);
+    width: (@i * 100% / @n) - @column-padding-right - @column-padding-left;
+
+    padding-left: @column-padding-left;
+    padding-right: @column-padding-right;
 
     float: left;
 
