@@ -19,7 +19,7 @@ See demos of the system at [martindevans.github.io/LCARS](martindevans.github.io
 
 ### Elbows
 
-![foo](Reference Images/Elbows/top elbow.png =250x)
+![foo](Reference Images/Elbows/top elbow.png)
 
 ## Buttons
 
