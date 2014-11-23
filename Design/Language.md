@@ -17,7 +17,9 @@ See demos of the system at [martindevans.github.io/LCARS](martindevans.github.io
 
 ## Frames
 
-![foo](Reference Images/First Contact/vlcsnap-2014-11-22-14h33m26s70.png)
+### Elbows
+
+![foo](Reference Images/Elbows/top elbow.png =250x)
 
 ## Buttons
 
