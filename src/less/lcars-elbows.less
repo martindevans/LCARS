@@ -10,6 +10,10 @@
     clear: both;
     float: @h;
 
+    &.lcars-elbow-none {
+        background-color: transparent;
+    }
+
     &.lcars-elbow-round {
         border-@{v}-@{h}-radius: @elbow-outer-radius;
     }
@@ -27,6 +31,22 @@
     }
 }
 
+.lcars-elbow-content(@v; @h) {
+    & > * {
+        @{v}: 0;
+        @{h}: @elbow-cutout-width;
+        position: absolute;
+        padding-@{h}: 0.25em;
+        padding-@{v}: 0.2em;
+
+        max-width: 100% - @elbow-cutout-width;
+        max-height: 100%;
+        overflow: hidden;
+
+        text-transform: capitalize;
+    }
+}
+
 .lcars-elbow-after(@v; @h) {
     &::after {
         position: absolute;
@@ -41,6 +61,8 @@
         @{v}: 0;
         @{h}: 0;
     }
+
+    .lcars-elbow-content(@v, @h);
 }
 
 .lcars-left > .lcars-top-elbow {
