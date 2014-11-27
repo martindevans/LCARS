@@ -12,7 +12,8 @@
         }
     },
     {
-        .lcars-group-@{i} .lcars-group-member:nth-child(@{j}) {
+        @index: @m - @i;
+        .lcars-group-@{index} .lcars-group-member:nth-child(@{j}) {
             background-color: hsl(
                 `((@{i} * 1415951.9000509) % 1) * 360`,
                 `((@{j} * 1245191.5780507) % 1) * (@{group-max-saturation} - @{group-min-saturation}) + @{group-min-saturation}`,
