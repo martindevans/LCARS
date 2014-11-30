@@ -6,7 +6,7 @@
     margin-bottom: 3px;
 }
 
-.lcars-stack-horizontal(@side) {
+.lcars-stack-horizontal(@side, @margin-side) {
     .lcars-stack-horizontal-@{side} .lcars-button {
         height: 100%;
         float: @side;
@@ -14,13 +14,13 @@
         padding-left: 1em;
         padding-right: 1em;
 
-        margin-left: 3px;
-        margin-right: 3px;
+        border-@{margin-side}: 3px solid;
+        border-color: @background;
     }
 }
 
-.lcars-stack-horizontal(left);
-.lcars-stack-horizontal(right);
+.lcars-stack-horizontal(left, right);
+.lcars-stack-horizontal(right, left);
 
 .lcars-button {
     user-select: none;
