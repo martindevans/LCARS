@@ -1,9 +1,9 @@
 .lcars-stack-vertical .lcars-button {
-    width: 100%;
+    width: 100.5%;
     height: 1.8em;
 
-    margin-top: 3px;
-    margin-bottom: 3px;
+    border-bottom: 3px solid;
+    border-color: @background;
 }
 
 .lcars-stack-horizontal(@side, @margin-side) {
@@ -14,7 +14,7 @@
         padding-left: 1em;
         padding-right: 1em;
 
-        border-@{margin-side}: 3px solid;
+        border-@{margin-side}: @column-padding-vertical solid;
         border-color: @background;
     }
 }
