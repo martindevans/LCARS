@@ -23,16 +23,38 @@
 
         overflow: hidden;
 
+        border-top: @column-padding-vertical solid;
+        border-bottom: @column-padding-vertical solid;
+        border-color: @background;
+
         //HACK: When pixel height == 100% of parent height, things break. Since window cannot ever be ~.1 units high, this fixes that!
-        height: calc(~"100% - " unit(@elbow-height * @shoulderCount + 0.1, px));
+        height: calc(~"100% - " unit(@elbow-height * @shoulderCount + 0.1 + (2 * @column-padding-vertical), px));
         min-height: 0;
+
+        .lcars-column-filler() {
+            &:before {
+                content: "";
+
+                float: left;
+                clear: both;
+                position: absolute;
+
+                width: 100% - @elbow-cutout-width;
+                height: 100%;
+
+                background-color: cornflowerblue;
+            }
+        }
 
         .lcars-left > & {
             padding-right: @elbow-cutout-width;
+            float: left;
+
+            .lcars-column-filler();
         }
 
         .lcars-center > & {
-            height: calc(~"100% - " unit(@center-elbow-height * @shoulderCount, px));
+            height: calc(~"100% - " unit(@center-elbow-height * @shoulderCount + (2 * @column-padding-vertical), px));
             min-height: @elbow-height * @shoulderCount - @center-elbow-height * @shoulderCount;
 
             width: 100%;
@@ -41,6 +63,8 @@
         .lcars-right > & {
             padding-left: @elbow-cutout-width;
             float: right;
+
+            .lcars-column-filler();
         }
     }
 }
