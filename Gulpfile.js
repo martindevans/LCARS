@@ -62,19 +62,23 @@ gulp.task('copyfonts', function() {
    .pipe(gulp.dest('build/fonts'));
 });
 
+var tsProject = ts.createProject({
+    declarationFiles: true,
+    noExternalResolve: false,
+    removeComments: false,
+    module: "amd",
+    sortOutput: true
+});
+
 gulp.task('ts', function() {
   var tsResult = gulp.src(locations.typescript)
-    .pipe(ts({
-        declarationFiles: true,
-        noExternalResolve: false,
-        removeComments: false,
-        module: "amd"
-    }));
+    .pipe(sourcemaps.init())
+    .pipe(ts(tsProject));
     
-    return eventStream.merge(
-        tsResult.dts.pipe(gulp.dest('build/definitions')),
-        tsResult.js.pipe(gulp.dest('build/js'))
-    );
+    return tsResult.js
+        .pipe(concat('lcars-scripts.js'))
+        .pipe(sourcemaps.write())
+        .pipe(gulp.dest('build/js'));
 });
 
 gulp.task('js', function() {
