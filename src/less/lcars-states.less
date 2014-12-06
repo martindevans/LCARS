@@ -4,32 +4,22 @@
 @-webkit-keyframes Highlight-In {
   0% {
     filter: saturate(100%);
+    filter: brightness(100%);
   }
-  100% {
+  30% {
     filter: saturate(@remapped-highlight-saturation);
-  }
-}
-
-@-webkit-keyframes Highlight-Out {
-  0% {
-    filter: saturate(@remapped-highlight-saturation);
+    filter: brightness(@remapped-highlight-brightness);
   }
   100% {
     filter: saturate(100%);
+    filter: brightness(100%);
   }
-}
-
-.lcars-button {
-  animation-name: Highlight-Out;
-  animation-duration: @highlight-out-duration;
-  animation-timing-function: ease-out;
 }
 
 .lcars-button:active {
   animation-name: Highlight-In;
-  animation-duration: @highlight-in-duration;
-  animation-timing-function: ease-in;
+  animation-duration: @highlight-duration;
+  animation-timing-function: ease-out;
 
   filter: saturate(@remapped-highlight-saturation);
-  filter: brightness(@remapped-highlight-brightness);
 }
