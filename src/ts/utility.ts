@@ -2,6 +2,7 @@
 // if so then disable right click on page
 $(function() {
     var $body = $(document.body);
+    FastClick.attach($body);
     if ($body.hasClass("lcars-no-alt")) {
         $body.attr("oncontextmenu", "return false");
     }
@@ -11,4 +12,4 @@ $(function() {
             return false;
         }
     };
-})
+});
