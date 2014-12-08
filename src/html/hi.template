@@ -1,0 +1,11 @@
+<script async>
+// Define and register <say-hi>.
+var proto = Object.create(HTMLElement.prototype);
+
+proto.createdCallback = function() {
+this.innerHTML = 'Hello, <b>' +
+                 (this.getAttribute('name') || '?') + '</b>';
+};
+
+document.registerElement('say-hi', {prototype: proto});
+</script>
