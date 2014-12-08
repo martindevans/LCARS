@@ -39,6 +39,9 @@ var locations = {
     ],
     html: [
         '*.html'
+    ],
+    templates: [
+        'src/html/**/*.template'
     ]
 };
 
@@ -88,6 +91,13 @@ gulp.task('js', function() {
     
 });
 
+gulp.task('template', function() {
+
+    gulp.src(locations.templates)
+        .pipe(concat('lcars-templates.html'))
+        .pipe(gulp.dest('build/html'));
+    
+});
 
 gulp.task('html', function() {
 
@@ -120,11 +130,12 @@ gulp.task('watch', function() {
     gulp.watch(locations.javascript, ['js']);
     gulp.watch(locations.fonts, ['copyfonts']);
     gulp.watch(locations.html, ['html']);
+    gulp.watch(locations.templates, ['template']);
 
 });
 
 gulp.task('default', ['clean','browser-sync','watch'], function() {
 
-    gulp.start('less', 'ts', 'js', 'copyfonts');
+    gulp.start('less', 'ts', 'js', 'copyfonts', 'html', 'template');
 
 });

@@ -1,0 +1,21 @@
+<link href="build/css/lcars.css" rel="stylesheet">
+<script type="text/javascript" src="build/js/lcars-scripts.js"></script>
+
+<script>
+// HTML Importing means the CSS imported above does nothing! When this script executes it pulls the CSS from this document and pushes it into the main document
+(function(document) {
+    // importDoc references this import's document
+    var importDoc = document.currentScript.ownerDocument;
+
+    // mainDoc references the main document (the page that's importing us)
+    var mainDoc = document;
+
+    function materializeStylesheets(from, to) {
+        // Grab the first stylesheet from this import, clone it, and append it to the importing document.
+        var styles = from.querySelector('link[rel="stylesheet"]');
+        to.head.appendChild(styles.cloneNode(true));
+    }
+    
+    materializeStylesheets(importDoc, mainDoc);
+})(document);
+</script>
