@@ -1,8 +1,14 @@
-<link href="build/css/lcars.css" rel="stylesheet">
-<script type="text/javascript" src="build/js/lcars-scripts.js"></script>
+<!-- External dependencies, possibly a bit messy to include them here (concat them into production JS instead) -->
+<script type="text/javascript" src="/build/js/Zepto.js"></script>
+<script type="text/javascript" src="/build/js/fastclick.js"></script>
 
+<!-- Internal dependencies -->
+<link href="/build/css/lcars.css" rel="stylesheet">
+<script type="text/javascript" src="/build/js/lcars-scripts.js"></script>
+
+<!-- Setup script -->
+<!-- HTML Importing means the CSS imported above does nothing! When this script executes it pulls the CSS from this document and pushes it into the main document -->
 <script>
-// HTML Importing means the CSS imported above does nothing! When this script executes it pulls the CSS from this document and pushes it into the main document
 (function(document) {
     // importDoc references this import's document
     var importDoc = document.currentScript.ownerDocument;

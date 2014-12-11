@@ -80,23 +80,24 @@ gulp.task('ts', function() {
     
     return tsResult.js
         .pipe(concat('lcars-scripts.js'))
-        .pipe(sourcemaps.write())
-        .pipe(gulp.dest('build/js'));
+        //.pipe(sourcemaps.write())
+        .pipe(gulp.dest('build/js'))
+        .pipe(reload({stream:true}));
 });
 
 gulp.task('js', function() {
 
     gulp.src(locations.javascript)
-        .pipe(gulp.dest('build/js'));
-    
+        .pipe(gulp.dest('build/js'))
+        .pipe(reload({stream:true}));
 });
 
 gulp.task('template', function() {
 
     gulp.src(locations.templates)
         .pipe(concat('lcars-templates.html'))
-        .pipe(gulp.dest('build/html'));
-    
+        .pipe(gulp.dest('build/html'))
+        .pipe(reload({stream:true}));
 });
 
 gulp.task('html', function() {

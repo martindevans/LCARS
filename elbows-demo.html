@@ -1,40 +1,40 @@
 <html>
-    <head>
-    <link href="build/css/lcars.css" rel="stylesheet">
+    <head>    
+        <link rel="import" href="build/html/lcars-templates.html">
     </head>
     <body>
-        <div class="lcars-container">
-
+        <!-- <div class="lcars-container"> -->
+        <lcars-container>
+        
+            <!-- <div class="lcars-row-4-12"> -->
             <div class="lcars-row-4-12">
 
-                <div class="lcars-column-1-24 lcars-center">
+                <!-- <div class="lcars-column-1-24 lcars-center">
                     <div class="lcars-column-inner-1">
+                        <p>AAAA</p>
                     </div>
                     <div class="lcars-bottom-elbow lcars-elbow-round"></div>
-                </div>
+                </div> -->
+                <lcars-column col="1" of="24" align="center" elbow-bottom="round">
+                    <p>AAAA</p>
+                </lcars-column>
 
-                <div class="lcars-column-1-24 lcars-right">
-                    <div class="lcars-column-inner-1">
-                    </div>
-                    <div class="lcars-bottom-elbow lcars-elbow-round"></div>
-                </div>
+                <lcars-column col="1" of="24" align="right" elbow-bottom="round">
+                    <p>BBBB</p>
+                </lcars-column>
 
-                <div class="lcars-column-5-24 lcars-right">
-                    <div class="lcars-column-inner-1">
-                    </div>
-                    <div class="lcars-bottom-elbow lcars-elbow-round"></div>
-                </div>
+                <lcars-column col="5" of="24" align="right" elbow-bottom="round" bottom-label="This Is A Label">
+                    <p>CCCC</p>
+                </lcars-column>
 
-                <div class="lcars-column-16-24 lcars-right">
-                    <div class="lcars-column-inner-1">
-                    </div>
-                    <div class="lcars-bottom-elbow lcars-elbow-round"></div>
-                </div>
+                <lcars-column col="16" of="24" align="right" elbow-bottom="round">
+                    <p>DDDD</p>
+                </lcars-column>
             </div>
 
-            <div class="lcars-row-8-12">
-            </div>
+            <!-- <div class="lcars-row-8-12"></div> -->
+            <div class="lcars-row-8-12"></div>
 
-        </div>
+        </lcars-container>
     </body>
 </html>
