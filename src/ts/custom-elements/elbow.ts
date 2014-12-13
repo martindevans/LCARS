@@ -13,12 +13,18 @@ LcarsComponents.registerCustomLcarsElement("elbow", HTMLElement, {
             throw new Error("Elbow must be either square or round");
         }
         
-        if (this.prev().length == 0) {
+        var p = this.prev().length;
+        var n = this.next().length;
+        if (p == 0 && n == 0) {
+            throw new Error("Indeterminate if shoulder is top or bottom shoulder (no sibling elements)");
+        }
+        
+        if (p == 0) {
             this.addClass("lcars-top-elbow");
-        } else if (this.next().length == 0) {
+        } else if (n == 0) {
             this.addClass("lcars-bottom-elbow");
         } else {
-            //throw new Error("Elbow must be either first or last element within parent");
+            throw new Error("Elbow must be either first or last element within parent");
         }
     }
 });

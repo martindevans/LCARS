@@ -3,7 +3,7 @@
 LcarsComponents.registerCustomLcarsElement("column", HTMLElement, {
     requiredAttributes: [ "col", "of", "align" ],
     
-    createdCallback: function() {
+    createdCallback: function() {    
         var col = parseInt(this.attr("col"));
         var num = parseInt(this.attr("of"));
         var align = this.attr("align");
@@ -31,29 +31,50 @@ LcarsComponents.registerCustomLcarsElement("column", HTMLElement, {
             throw new Error("Columns must be aligned to either left, right or center");
         }
         
-        //Contain content in between elbows
-        var children = this.children("lcars-elbow");
-        if (children.length > 2) {
-            throw new Error("Column cannot have more than 2 elbows");
-        } else if (children.length == 2) {
-            var topElbow = children.first();
-            var lastElbow = children.last();
-        
-            //Remove content
-            var content = topElbow.nextUntil(lastElbow);
+        //Helper to host a selection of content from it's current position in the DOM into an lcars-column-inner-N container element next to an elbow
+        function hoistContent(elbow, position, shoulderCount, content) {
             content.detach();
-            
-            //Put it back inside an appropriate container
-            var inner = $("<div></div>").addClass("lcars-column-inner-2");
-            inner.append(content);
-            
-            topElbow.after(inner);
-        } else if (children.length == 1) {
-            //Single elbow setup
-            throw new Error("Single elbow setups not yet supported");
+            elbow[position]($("<div></div>").addClass("lcars-column-inner-" + shoulderCount).append(content));
         }
-        else if (children.length == 0) {
-            //Zero elbow setup
+        
+        //Move content into proper container sibling of elbow(s)
+        var shoulders = this.children("lcars-elbow");
+        if (shoulders.length > 2) {
+            throw new Error("Column cannot have more than 2 elbows");
+        } else if (shoulders.length == 2) {
+            //Two elbows get all the content between the two elbows and detach it from the parent.
+            //Then reinsert this content back into an appropriately sized lcars-column-inner-N classed element
+        
+            var topElbow = shoulders.first();
+            var lastElbow = shoulders.last();
+
+            hoistContent(
+                topElbow,
+                "after",
+                2,
+                topElbow.nextUntil(lastElbow)
+            );
+            
+        } else if (shoulders.length == 1) {
+            //Single elbow, but is it at the top or the bottom?
+            var previous = shoulders.prevAll();
+            var next = shoulders.nextAll();
+            if (previous.length == 0 && next.length == 0) {
+                throw new Error("Indeterminate if shoulder is top or bottom shoulder (no sibling elements)");
+            }
+            
+            if (previous.length == 0) {
+                //Single top elbow
+                hoistContent(shoulders, "after", 1, next)
+            } else if (next.length == 0) {
+                //Single bottom elbow
+                hoistContent(shoulders, "before", 1, previous)
+            } else {
+                throw new Error("Shoulder must be last or first element in parent");
+            }
+        }
+        else if (shoulders.length == 0) {
+            //Zero elbows
             return;
         }
     }
