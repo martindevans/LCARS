@@ -1,5 +1,5 @@
 <!-- External dependencies, possibly a bit messy to include them here (concat them into production JS instead) -->
-<script type="text/javascript" src="/build/js/Zepto.js"></script>
+<script type="text/javascript" src="/build/js/jquery-2.1.1.js"></script>
 <script type="text/javascript" src="/build/js/fastclick.js"></script>
 
 <!-- Internal dependencies -->

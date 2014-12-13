@@ -1,29 +1,7 @@
 /// <reference path="lcars-components.ts" /><script async>
 
-//todo: rather than polluting the global namespace this should be inside a module!
-var allowedColumnShoulderShapeTypes = ["square", "none", "round"];
-
-function createColumnElbow(cls, type, label) {
-    if (allowedColumnShoulderShapeTypes.indexOf(type) === -1) {
-        throw new Error("Column " + cls + " elbow must be styled either square, round or none");
-    }
-
-    var el = $('<div></div>')
-        .addClass("lcars-" + cls + "-elbow")
-        .toggleClass('lcars-elbow-square', type === "square")
-        .toggleClass('lcars-elbow-round', type === "round")
-        .toggleClass('lcars-elbow-none', type === "none");
-        
-    if (label) {
-        el.append("<h1></h1>")
-            .text(label);
-    }
-    
-    return el;
-}
-
 LcarsComponents.registerCustomLcarsElement("column", HTMLElement, {
-    requiredAttributes: [ "col", "num", "align" ],
+    requiredAttributes: [ "col", "of", "align" ],
     
     createdCallback: function() {
         var col = parseInt(this.attr("col"));
@@ -53,33 +31,30 @@ LcarsComponents.registerCustomLcarsElement("column", HTMLElement, {
             throw new Error("Columns must be aligned to either left, right or center");
         }
         
-        // the inside of a column looks like this:
-        //  <div class="lcars-top-elbow lcars-elbow-square"></div>
-        //  <div class="lcars-column-inner-2">Content goes here</div>
-        //  <div class="lcars-bottom-elbow lcars-elbow-round"></div>
-        // i.e. a top elbow (maybe), content, and a buttom elbow (maybe)
-        //Pull up the content from the custom element and place it inside the column inner, with the appropriate elbow elements
-        var topElbow = this.attr("elbow-top") || "none";
-        var topLabel = this.attr("top-label") || "";
+        //Contain content in between elbows
+        var children = this.children("lcars-elbow");
+        if (children.length > 2) {
+            throw new Error("Column cannot have more than 2 elbows");
+        } else if (children.length == 2) {
+            var topElbow = children.first();
+            var lastElbow = children.last();
         
-        var bottomElbow = this.attr("elbow-bottom") || "none";
-        var bottomLabel = this.attr("bottom-label") || "";
-        
-        var content = this.children().clone();
-        this.empty();
-        
-        var count = (topElbow !== "none" ? 1 : 0) + (bottomElbow !== "none" ? 1 : 0);
-        
-        if (topElbow !== "none") {
-            this.append(createColumnElbow("top", topElbow, topLabel));
-        }
-        
-        var innerContent = $('<div></div>').addClass("lcars-column-inner-" + count);
-        innerContent.append(content);
-        this.append(innerContent);
+            //Remove content
+            var content = topElbow.nextUntil(lastElbow);
+            content.detach();
             
-        if (bottomElbow !== "none") {
-            this.append(createColumnElbow("bottom", bottomElbow, bottomLabel));
+            //Put it back inside an appropriate container
+            var inner = $("<div></div>").addClass("lcars-column-inner-2");
+            inner.append(content);
+            
+            topElbow.after(inner);
+        } else if (children.length == 1) {
+            //Single elbow setup
+            throw new Error("Single elbow setups not yet supported");
+        }
+        else if (children.length == 0) {
+            //Zero elbow setup
+            return;
         }
     }
 });

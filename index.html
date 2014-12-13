@@ -6,47 +6,50 @@
         <link rel="import" href="build/html/lcars-templates.html">
     </head>
     <body>
-        <div class="lcars-container red-alert">
+        <lcars-container>
             <div class="lcars-row-10-12">
-                <div class="lcars-column-3-24 lcars-left lcars-stack-vertical">
+                <lcars-column col="3" of="24" align="left" class="lcars-stack-vertical">
 
-                    <div class="lcars-top-elbow lcars-elbow-round"><h1>This is a column header</h1></div>
+                    <lcars-elbow shape="round">
+                        <h1>This Is A Column Header</h1>
+                    </lcars-elbow>
+                
+                    <ul class="lcars-group-1">
+                        <li>
+                            <div class="lcars-button lcars-cap-round lcars-group-member">
+                                <span>Navigation</span>
+                            </div>
+                            <ul class="lcars-group-2">
+                                <li>
+                                    <div class="lcars-button lcars-cap-round lcars-group-member">
+                                        <span>Sub group</span>
+                                    </div>
+                                    <ul class="lcars-group-3">
+                                        <li>
+                                            <div class="lcars-button lcars-cap-square lcars-group-member">
+                                                <span>Sub Sub group</span>
+                                            </div>
+                                            <ul class="lcars-group-4">
+                                                <li class="lcars-button lcars-cap-round lcars-group-member"><span>Option 1</span></li>
+                                                <li class="lcars-button lcars-cap-round lcars-group-member"><span>Option 2</span></li>
+                                                <li class="lcars-button lcars-cap-round lcars-group-member"><span>Option 3</span></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="lcars-button lcars-cap-round lcars-group-member"><span>Operations</span></li>
+                        <li class="lcars-button lcars-cap-round lcars-group-member"><span>Engineering</span></li>
+                    </ul>
 
-                    <div class="lcars-column-inner-2">
-                        <ul class="lcars-group-1">
-                            <li>
-                                <div class="lcars-button lcars-cap-round lcars-group-member">
-                                    <span>Navigation</span>
-                                </div>
-                                <ul class="lcars-group-2">
-                                    <li>
-                                        <div class="lcars-button lcars-cap-round lcars-group-member">
-                                            <span>Sub group</span>
-                                        </div>
-                                        <ul class="lcars-group-3">
-                                            <li>
-                                                <div class="lcars-button lcars-cap-square lcars-group-member">
-                                                    <span>Sub Sub group</span>
-                                                </div>
-                                                <ul class="lcars-group-4">
-                                                    <li class="lcars-button lcars-cap-round lcars-group-member"><span>Option 1</span></li>
-                                                    <li class="lcars-button lcars-cap-round lcars-group-member"><span>Option 2</span></li>
-                                                    <li class="lcars-button lcars-cap-round lcars-group-member"><span>Option 3</span></li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="lcars-button lcars-cap-round lcars-group-member"><span>Operations</span></li>
-                            <li class="lcars-button lcars-cap-round lcars-group-member"><span>Engineering</span></li>
-                        </ul>
-                    </div>
+                    <lcars-elbow shape="round">
+                        <h1>This Is A Column Footer</h1>
+                    </lcars-elbow>
+                    
+                </lcars-column>
 
-                    <div class="lcars-bottom-elbow lcars-elbow-round"><h1>This is a column footer</h1></div>
-                </div>
-
-                <div class="lcars-column-18-24 lcars-center">
+                <lcars-column col="18" of="24" align="center" elbow-top="square" elbow-bottom="square">
                     <div class="lcars-top-elbow lcars-stack-horizontal-right lcars-group-5">
                         <div class="lcars-button lcars-group-member"><span>Button A</span></div>
                         <div class="lcars-button lcars-group-member"><span>Button B</span></div>
@@ -60,7 +63,7 @@
                         <div class="lcars-button lcars-group-member"><span>Button D</span></div>
                         <div class="lcars-button lcars-group-member"><span>Button E</span></div>
                     </div>
-                </div>
+                </lcars-column>
 
                 <div class="lcars-column-3-24 lcars-right lcars-stack-vertical">
                     <div class="lcars-top-elbow"><h1>This Is A Column Long Header</h1></div>
@@ -74,7 +77,7 @@
             </div>
             <div class="lcars-row-2-12">
             </div>
-        </div>
+        </lcars-container>
         
         <say-hi>Martin</say-hi>
     </body>
