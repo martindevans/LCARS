@@ -1,6 +1,6 @@
 /// <reference path="lcars-components.ts" /><script async>
 
-LcarsComponents.registerCustomLcarsElement("elbow", HTMLElement, {
+LcarsComponents.registerCustomLcarsElement("elbow", HTMLDivElement, {
     requiredAttributes: [ "shape" ],
     
     createdCallback: function() {

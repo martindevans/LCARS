@@ -11,7 +11,7 @@ module LcarsComponents {
     // }
     export function registerCustomLcarsElement(name : string, baseElement, options) {
         if (baseElement == null) {
-            baseELement = HTMLElement;
+            baseElement = HTMLElement;
         }
         var proto = Object.create(baseElement.prototype);
 

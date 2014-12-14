@@ -1,6 +1,6 @@
 /// <reference path="lcars-components.ts" /><script async>
 
-LcarsComponents.registerCustomLcarsElement("column", HTMLElement, {
+LcarsComponents.registerCustomLcarsElement("column", HTMLDivElement, {
     requiredAttributes: [ "col", "of", "align" ],
     
     createdCallback: function() {    

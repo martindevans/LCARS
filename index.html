@@ -2,7 +2,7 @@
     <head>
         <script type="text/javascript" src="build/js/Zepto.js"></script>
         <script type="text/javascript" src="build/js/fastclick.js"></script>
-        
+
         <link rel="import" href="build/html/lcars-templates.html">
     </head>
     <body>
@@ -13,7 +13,7 @@
                     <lcars-elbow shape="round">
                         <h1>This Is A Column Header</h1>
                     </lcars-elbow>
-                
+
                     <ul class="lcars-group-1">
                         <li>
                             <div class="lcars-button lcars-cap-round lcars-group-member">
@@ -46,39 +46,41 @@
                     <lcars-elbow shape="round">
                         <h1>This Is A Column Footer</h1>
                     </lcars-elbow>
-                    
+
                 </lcars-column>
 
-                <lcars-column col="18" of="24" align="center" elbow-top="square" elbow-bottom="square">
-                    <div class="lcars-top-elbow lcars-stack-horizontal-right lcars-group-5">
+                <lcars-column col="18" of="24" align="center">
+                    <lcars-elbow shape="square" class="lcars-stack-horizontal-right lcars-group-5">
                         <div class="lcars-button lcars-group-member"><span>Button A</span></div>
                         <div class="lcars-button lcars-group-member"><span>Button B</span></div>
                         <div class="lcars-button lcars-group-member"><span>Button With A Long Title</span></div>
-                    </div>
-                    <div class="lcars-column-inner-2">
-                        <p>The LCARS Computer Network</p>
-                    </div>
-                    <div class="lcars-bottom-elbow lcars-stack-horizontal-left lcars-group-0">
+                    </lcars-elbow>
+
+                    <p>The LCARS Computer Network</p>
+
+                    <lcars-elbow shape="square" class="lcars-stack-horizontal-left lcars-group-0">
                         <div class="lcars-button lcars-group-member"><span>Button C</span></div>
                         <div class="lcars-button lcars-group-member"><span>Button D</span></div>
                         <div class="lcars-button lcars-group-member"><span>Button E</span></div>
-                    </div>
+                    </lcars-elbow>
                 </lcars-column>
 
-                <div class="lcars-column-3-24 lcars-right lcars-stack-vertical">
-                    <div class="lcars-top-elbow"><h1>This Is A Column Long Header</h1></div>
-                    <div class="lcars-column-inner-2 lcars-group-5">
-                        <div class="lcars-button lcars-cap-round lcars-group-member"><span>Configure</span></div>
-                        <div class="lcars-button lcars-cap-round lcars-group-member"><span>Log out</span></div>
-                        <div class="lcars-button lcars-cap-square lcars-group-member"><span>Deactivate</span></div>
-                    </div>
-                    <div class="lcars-bottom-elbow"><h1>This Is A Very Very Long Column Footer Indeed. To Be Honest It Might Be A Little Too Wordy, But It Does Test Overflowing the max allowed length.</h1></div>
-                </div>
+                <lcars-column col="3" of="24" align="right" class="lcars-stack-vertical lcars-group-5">
+                    <lcars-elbow shape="square">
+                        <h1>This Is A Column Long Header</h1>
+                    </lcars-elbow>
+
+                    <div class="lcars-button lcars-cap-round lcars-group-member"><span>Configure</span></div>
+                    <div class="lcars-button lcars-cap-round lcars-group-member"><span>Log out</span></div>
+                    <div class="lcars-button lcars-cap-square lcars-group-member"><span>Deactivate</span></div>
+
+                    <lcars-elbow shape="square">
+                        <h1>This Is A Very Very Long Column Footer Indeed. To Be Honest It Might Be A Little Too Wordy, But It Does Test Overflowing the max allowed length.</h1>
+                    </lcars-elbow>
+                </lcars-column>
             </div>
             <div class="lcars-row-2-12">
             </div>
         </lcars-container>
-        
-        <say-hi>Martin</say-hi>
     </body>
 </html>
