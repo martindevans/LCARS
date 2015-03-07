@@ -16,7 +16,8 @@ LcarsComponents.registerCustomLcarsElement("elbow", HTMLDivElement, {
         var p = this.prev().length;
         var n = this.next().length;
         if (p == 0 && n == 0) {
-            throw new Error("Indeterminate if shoulder is top or bottom shoulder (no sibling elements)");
+            //It is indeterminate if this is a top or a bottom elbow, let's assume it's a top
+            p = 0; n = 1;
         }
         
         if (p == 0) {

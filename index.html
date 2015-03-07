@@ -4,7 +4,7 @@
     </head>
     <body>
         <lcars-container>
-            <div class="lcars-row-10-12">
+            <lcars-row row="10" of="12">
                 <lcars-column col="3" of="24" align="left" class="lcars-stack-vertical">
 
                     <lcars-elbow shape="round">
@@ -75,9 +75,22 @@
                         <h1>This Is A Very Very Long Column Footer Indeed. To Be Honest It Might Be A Little Too Wordy, But It Does Test Overflowing the max allowed length.</h1>
                     </lcars-elbow>
                 </lcars-column>
-            </div>
-            <div class="lcars-row-2-12">
-            </div>
+            </lcars-row>
+            
+            <lcars-row row="2" of="12">
+                <lcars-column col="1" of="24" align="left">
+                    <lcars-elbow shape="round"></lcars-elbow>
+                    <lcars-elbow shape="square"></lcars-elbow>
+                </lcars-column>
+                <lcars-column col="4" of="24" align="center">
+                    <lcars-elbow shape="round"></lcars-elbow>
+                    <lcars-elbow shape="square"></lcars-elbow>
+                </lcars-column>
+                <lcars-column col="2" of="24" align="right">
+                    <lcars-elbow shape="round"></lcars-elbow>
+                    <lcars-elbow shape="square"></lcars-elbow>
+                </lcars-column>
+            </lcars-row>
         </lcars-container>
     </body>
 </html>

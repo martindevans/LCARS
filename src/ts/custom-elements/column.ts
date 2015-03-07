@@ -13,7 +13,7 @@ LcarsComponents.registerCustomLcarsElement("column", HTMLDivElement, {
         }
         
         if (col <= 0 || col > num) {
-            throw new Error("Column number must be 0 < col < count");
+            throw new Error("Column number must be 0 < col <= count");
         }
         
         //Add class for which type of column this is
