@@ -1,31 +1,9 @@
 /// <reference path="lcars-components.ts" /><script async>
 
-//todo: rather than polluting the global namespace this should be inside a module!
-var allowedColumnShoulderShapeTypes = ["square", "none", "round"];
-
-function createColumnElbow(cls, type, label) {
-    if (allowedColumnShoulderShapeTypes.indexOf(type) === -1) {
-        throw new Error("Column " + cls + " elbow must be styled either square, round or none");
-    }
-
-    var el = $('<div></div>')
-        .addClass("lcars-" + cls + "-elbow")
-        .toggleClass('lcars-elbow-square', type === "square")
-        .toggleClass('lcars-elbow-round', type === "round")
-        .toggleClass('lcars-elbow-none', type === "none");
-        
-    if (label) {
-        el.append("<h1></h1>")
-            .text(label);
-    }
+LcarsComponents.registerCustomLcarsElement("column", HTMLDivElement, {
+    requiredAttributes: [ "col", "of", "align" ],
     
-    return el;
-}
-
-LcarsComponents.registerCustomLcarsElement("column", HTMLElement, {
-    requiredAttributes: [ "col", "num", "align" ],
-    
-    createdCallback: function() {
+    createdCallback: function() {    
         var col = parseInt(this.attr("col"));
         var num = parseInt(this.attr("of"));
         var align = this.attr("align");
@@ -35,7 +13,7 @@ LcarsComponents.registerCustomLcarsElement("column", HTMLElement, {
         }
         
         if (col <= 0 || col > num) {
-            throw new Error("Column number must be 0 < col < count");
+            throw new Error("Column number must be 0 < col <= count");
         }
         
         //Add class for which type of column this is
@@ -53,33 +31,51 @@ LcarsComponents.registerCustomLcarsElement("column", HTMLElement, {
             throw new Error("Columns must be aligned to either left, right or center");
         }
         
-        // the inside of a column looks like this:
-        //  <div class="lcars-top-elbow lcars-elbow-square"></div>
-        //  <div class="lcars-column-inner-2">Content goes here</div>
-        //  <div class="lcars-bottom-elbow lcars-elbow-round"></div>
-        // i.e. a top elbow (maybe), content, and a buttom elbow (maybe)
-        //Pull up the content from the custom element and place it inside the column inner, with the appropriate elbow elements
-        var topElbow = this.attr("elbow-top") || "none";
-        var topLabel = this.attr("top-label") || "";
-        
-        var bottomElbow = this.attr("elbow-bottom") || "none";
-        var bottomLabel = this.attr("bottom-label") || "";
-        
-        var content = this.children().clone();
-        this.empty();
-        
-        var count = (topElbow !== "none" ? 1 : 0) + (bottomElbow !== "none" ? 1 : 0);
-        
-        if (topElbow !== "none") {
-            this.append(createColumnElbow("top", topElbow, topLabel));
+        //Helper to host a selection of content from it's current position in the DOM into an lcars-column-inner-N container element next to an elbow
+        function hoistContent(elbow, position, shoulderCount, content) {
+            content.detach();
+            elbow[position]($("<div></div>").addClass("lcars-column-inner-" + shoulderCount).append(content));
         }
         
-        var innerContent = $('<div></div>').addClass("lcars-column-inner-" + count);
-        innerContent.append(content);
-        this.append(innerContent);
+        //Move content into proper container sibling of elbow(s)
+        var shoulders = this.children("lcars-elbow");
+        if (shoulders.length > 2) {
+            throw new Error("Column cannot have more than 2 elbows");
+        } else if (shoulders.length == 2) {
+            //Two elbows get all the content between the two elbows and detach it from the parent.
+            //Then reinsert this content back into an appropriately sized lcars-column-inner-N classed element
+        
+            var topElbow = shoulders.first();
+            var lastElbow = shoulders.last();
+
+            hoistContent(
+                topElbow,
+                "after",
+                2,
+                topElbow.nextUntil(lastElbow)
+            );
             
-        if (bottomElbow !== "none") {
-            this.append(createColumnElbow("bottom", bottomElbow, bottomLabel));
+        } else if (shoulders.length == 1) {
+            //Single elbow, but is it at the top or the bottom?
+            var previous = shoulders.prevAll();
+            var next = shoulders.nextAll();
+            if (previous.length == 0 && next.length == 0) {
+                throw new Error("Indeterminate if shoulder is top or bottom shoulder (no sibling elements)");
+            }
+            
+            if (previous.length == 0) {
+                //Single top elbow
+                hoistContent(shoulders, "after", 1, next)
+            } else if (next.length == 0) {
+                //Single bottom elbow
+                hoistContent(shoulders, "before", 1, previous)
+            } else {
+                throw new Error("Shoulder must be last or first element in parent");
+            }
+        }
+        else if (shoulders.length == 0) {
+            //Zero elbows
+            return;
         }
     }
 });

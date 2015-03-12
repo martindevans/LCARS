@@ -31,12 +31,11 @@
         height: calc(~"100% - " unit(@elbow-height * @shoulderCount + 0.1 + (2 * @column-padding-vertical), px));
         min-height: 0;
 
-        .lcars-column-filler() {
+        .lcars-column-filler(@leftPosition) {
             &:before {
                 content: "";
 
-                float: left;
-                clear: both;
+                left: @leftPosition;
                 position: absolute;
 
                 width: 100% - @elbow-cutout-width;
@@ -50,7 +49,7 @@
             padding-right: @elbow-cutout-width;
             float: left;
 
-            .lcars-column-filler();
+            .lcars-column-filler(0);
         }
 
         .lcars-center > & {
@@ -64,7 +63,7 @@
             padding-left: @elbow-cutout-width;
             float: right;
 
-            .lcars-column-filler();
+            .lcars-column-filler(@elbow-cutout-width);
         }
     }
 }
