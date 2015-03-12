@@ -1,4 +1,5 @@
 /// <reference path="lcars-components.ts" /><script async>
+/// <reference path="../lcars-variables.ts" /><script async>
 
 LcarsComponents.registerCustomLcarsElement("column", HTMLDivElement, {
     requiredAttributes: [ "col", "of", "align" ],
@@ -8,17 +9,16 @@ LcarsComponents.registerCustomLcarsElement("column", HTMLDivElement, {
         var num = parseInt(this.attr("of"));
         var align = this.attr("align");
         
-        if (num != 24) {
-            throw new Error("Column count must be 24 for now!");
-        }
-        
         if (col <= 0 || col > num) {
             throw new Error("Column number must be 0 < col <= count");
         }
         
         //Add class for which type of column this is
         //TODO: Generate column width values on the fly, totally removing the need for an column LESS at all
-        this.addClass("lcars-column-" + col + "-" + num);
+        //this.addClass("lcars-column-" + col + "-" + num);
+        this.addClass("lcars-column-m-of-n");
+        
+        this.css("width", ((col * 100 / num) - lcars_config.column_padding_right - lcars_config.column_padding_left) + "%");
         
         //Setup alignment
         if (align == "left") {
