@@ -3,7 +3,8 @@
 
 .generate-name-i-n(row, 12, {
     width: 100%;
-    height: (@i * 100% / @n);
+    
+    height: calc((@i * 100% / @n) ~"-" unit((2 * @column-padding-vertical), px));
 
     overflow: hidden;
     
