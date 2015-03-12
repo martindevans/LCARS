@@ -1,10 +1,7 @@
 @import "lcars-variables.less";
-@import "lcars-loop.less";
 
-.generate-name-i-n(row, 12, {
+.lcars-row-m-of-n {
     width: 100%;
-    
-    height: calc((@i * 100% / @n) ~"-" unit((2 * @column-padding-vertical), px));
 
     overflow: hidden;
     
@@ -13,4 +10,4 @@
     border-top: @row-padding-vertical solid;
     border-bottom: @row-padding-vertical solid;
     border-color: @background;
-});
+}

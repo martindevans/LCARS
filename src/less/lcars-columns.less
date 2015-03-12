@@ -1,8 +1,7 @@
 @import "lcars-loop.less";
 
-.generate-name-i-n(column, 24, {
+.lcars-column-m-of-n {
     height: 100%;
-    width: (@i * 100% / @n) - @column-padding-right - @column-padding-left;
 
     margin-left: @column-padding-left;
     margin-right: @column-padding-right;
@@ -10,7 +9,7 @@
     float: left;
 
     overflow: hidden;
-});
+}
 
 .lcars-column-inner(@shoulderCount) {
     .lcars-column-inner-@{shoulderCount} {
