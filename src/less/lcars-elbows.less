@@ -18,16 +18,40 @@
         border-@{v}-@{h}-radius: @elbow-outer-radius;
     }
 
+    &.lcars-elbow-round::after {
+        border-@{v}-@{h}-radius: @elbow-inner-radius;
+    }
+    
     &.lcars-elbow-square {
         //Nothing! square element is square!
     }
 
-    &.lcars-elbow-round::after {
-        border-@{v}-@{h}-radius: @elbow-inner-radius;
-    }
-
     &.lcars-elbow-square::after {
         //Nothing, square element is square!
+    }
+    
+    &.lcars-elbow-cap {
+        background-color: @background;
+    }
+    
+    &.lcars-elbow-cap::after {
+        border-top-@{h}-radius: @center-elbow-height;
+        border-bottom-@{h}-radius: @center-elbow-height;
+        
+        width: 100%;
+        height: @center-elbow-height;
+        
+        //These properties are set elsewhere (to the values to the elbow cutouts)
+        //Set them back to auto to clear out those settings
+        bottom:auto;
+        top:auto;
+        left:auto;
+        right:auto;
+        
+        @{v}: 0;
+        @{h}: 0;
+        
+        background-color: cornflowerblue;
     }
 }
 

@@ -9,6 +9,8 @@ LcarsComponents.registerCustomLcarsElement("elbow", HTMLDivElement, {
             this.addClass("lcars-elbow-round");
         } else if (shape == "square") {
             this.addClass("lcars-elbow-square");
+        } else if (shape == "cap") {
+            this.addClass("lcars-elbow-cap");
         } else {
             throw new Error("Elbow must be either square or round");
         }
