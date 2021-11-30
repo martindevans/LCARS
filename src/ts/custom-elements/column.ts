@@ -14,10 +14,7 @@ LcarsComponents.registerCustomLcarsElement("column", HTMLDivElement, {
         }
         
         //Add class for which type of column this is
-        //TODO: Generate column width values on the fly, totally removing the need for an column LESS at all
-        //this.addClass("lcars-column-" + col + "-" + num);
         this.addClass("lcars-column-m-of-n");
-        
         this.css("width", ((col * 100 / num) - lcars_config.column_padding_right - lcars_config.column_padding_left) + "%");
         
         //Setup alignment
